@@ -396,7 +396,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                         </div>
                                     </div>
                                     <?php
-                                        } // end while product list
+                                        } // end while product listttt
                                     ?>
                                 </div> <!-- end .row.product--container -->
                             </div>

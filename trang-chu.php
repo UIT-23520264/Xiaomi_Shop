@@ -36,51 +36,30 @@ if (session_status() == PHP_SESSION_NONE) {
         ?>
         <div class="main" id="main">
             <?php
-            // Query lấy danh mục cho menu trái
-            $sql_danhmuc_menu = "SELECT * FROM tbl_danhmuc WHERE category_status=1 ORDER BY id_danhmuc ASC LIMIT 9 ";
-            $query_danhmuc_menu = mysqli_query($mysqli, $sql_danhmuc_menu);
+            // Query lấy danh mục cho menu trái (VẪN GIỮ QUERY NÀY NẾU CÓ THỂ DÙNG Ở NƠI KHÁC, HOẶC XÓA NẾU KHÔNG CẦN)
+            // $sql_danhmuc_menu = "SELECT * FROM tbl_danhmuc WHERE category_status=1 ORDER BY id_danhmuc ASC LIMIT 9 ";
+            // $query_danhmuc_menu = mysqli_query($mysqli, $sql_danhmuc_menu);
             ?>
             <div id="home">
                 <div class="content">
 
-                    <!-- Ads slide và Menu danh mục -->
+                    <!-- Ads slide -->
                     <section class="section box__slide_home">
                         <div class="section_content">
                             <div class="row ">
-                                <!-- Menu danh mục bên trái (chỉ hiện trên màn hình lớn) -->
-                                <div class="col-lg-3 col-md-4 hide-on-mobile">
-                                    <ul class="home__menu">
-                                        <?php
-                                        // Kiểm tra và hiển thị danh mục menu
-                                        if ($query_danhmuc_menu && mysqli_num_rows($query_danhmuc_menu) > 0) {
-                                            while ($row_danhmuc = mysqli_fetch_array($query_danhmuc_menu)) {
-                                        ?>
-                                        <li>
-                                            <button class="category__product-btn"
-                                                value="<?php echo htmlspecialchars($row_danhmuc['id_danhmuc']); ?>">
-                                                <i class="fa-solid fa-chevron-right"></i>
-                                                <?php echo htmlspecialchars($row_danhmuc['ten_danhmuc']); ?>
-                                            </button>
-                                        </li>
-                                        <?php
-                                            }
-                                        } else {
-                                            echo "<li><p style='padding: 10px;'>Không có danh mục</p></li>"; // Thông báo nếu không có danh mục
-                                        }
-                                        ?>
-                                    </ul>
-                                </div>
-                                <!-- Slider quảng cáo -->
-                                <div class="col-lg-9 col-md-8 col-12">
+                                <!-- KHỐI MENU DANH MỤC BÊN TRÁI ĐÃ BỊ XÓA -->
+
+                                <!-- Slider quảng cáo - ĐÃ ĐIỀU CHỈNH CLASS -->
+                                <div class="col-lg-12 col-md-12 col-12">
                                     <div class="slide_ads">
                                         <!-- Swiper -->
                                         <div class="swiper mySwiper">
                                             <div class="swiper-wrapper">
                                                 <div class="swiper-slide">
-                                                    <img src="images/ads/ads2.jpg" alt="Quảng cáo 1">
+                                                    <img src="images/ads/qc1.png" alt="Quảng cáo 1">
                                                 </div>
                                                 <div class="swiper-slide">
-                                                    <img src="images/ads/ads2.jpg" alt="Quảng cáo 2">
+                                                    <img src="images/ads/qc2.png" alt="Quảng cáo 2">
                                                     <!-- Thêm các slide khác nếu cần -->
                                                 </div>
                                             </div>
@@ -102,7 +81,7 @@ if (session_status() == PHP_SESSION_NONE) {
                             <div class="freeship_banner">
                                 <div class="row">
                                     <div class="col-12">
-                                        <img src="images/banner/freeship-banner.jpg" alt="Banner Freeship">
+                                        <img src="images/banner/freeship-banner.png" alt="Banner Freeship">
                                     </div>
                                 </div>
                             </div>
@@ -396,7 +375,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                         </div>
                                     </div>
                                     <?php
-                                        } // end while product listttt
+                                        } // end while product list
                                     ?>
                                 </div> <!-- end .row.product--container -->
                             </div>
@@ -475,8 +454,10 @@ if (session_status() == PHP_SESSION_NONE) {
                 return;
             }
 
-            // 3. Click vào nút danh mục ở menu trái
-            const categoryButton = event.target.closest('.category__product-btn');
+            // 3. Click vào nút danh mục ở menu trái (KHỐI NÀY ĐÃ BỊ XÓA, NHƯNG ĐỂ LẠI LOGIC NÀY NẾU CÓ NÚT TƯƠNG TỰ Ở NƠI KHÁC)
+            const categoryButton = event.target.closest(
+                '.category__product-btn'
+            ); // Khối này đã bị xóa nên event listener này sẽ không còn tác dụng cho menu trái nữa
             if (categoryButton) {
                 const idCategory = categoryButton.getAttribute("value");
                 if (idCategory) {

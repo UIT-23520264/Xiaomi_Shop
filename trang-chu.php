@@ -36,9 +36,7 @@ if (session_status() == PHP_SESSION_NONE) {
         ?>
         <div class="main" id="main">
             <?php
-            // Query lấy danh mục cho menu trái (VẪN GIỮ QUERY NÀY NẾU CÓ THỂ DÙNG Ở NƠI KHÁC, HOẶC XÓA NẾU KHÔNG CẦN)
-            // $sql_danhmuc_menu = "SELECT * FROM tbl_danhmuc WHERE category_status=1 ORDER BY id_danhmuc ASC LIMIT 9 ";
-            // $query_danhmuc_menu = mysqli_query($mysqli, $sql_danhmuc_menu);
+       
             ?>
             <div id="home">
                 <div class="content">
@@ -110,7 +108,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     $query_product_discount = mysqli_query($mysqli, $sql_product_discount);
                                     if ($query_product_discount && mysqli_num_rows($query_product_discount) > 0) {
                                         while ($row_product_discount = mysqli_fetch_array($query_product_discount)) {
-                                            $hinhanh_url = './admin/modules/quanlysp/handleEvent/uploads/' . rawurlencode($row_product_discount['hinhanh']);
+                                            $hinhanh_url = './admin/modules/quanlysp/handleEvent/product/' . rawurlencode($row_product_discount['hinhanh']);
                                     ?>
                                     <div class="col col-lg-2-4 col-md-3 col-6 mb-10">
                                         <!-- Class col-lg-2-4 là tùy chỉnh? -->
@@ -204,7 +202,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     $query_product_sold = mysqli_query($mysqli, $sql_product_sold);
                                     if ($query_product_sold && mysqli_num_rows($query_product_sold) > 0) {
                                         while ($row_product_sold = mysqli_fetch_array($query_product_sold)) {
-                                            $hinhanh_url_sold = './admin/modules/quanlysp/handleEvent/uploads/' . rawurlencode($row_product_sold['hinhanh']);
+                                            $hinhanh_url_sold = './admin/modules/quanlysp/handleEvent/product/' . rawurlencode($row_product_sold['hinhanh']);
                                     ?>
                                     <div class="col col-lg-2-4 col-md-3 col-6 mb-10">
                                         <div class="row__item item--product">
@@ -315,7 +313,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     <!-- Bỏ no-wrap nếu muốn -->
                                     <?php
                                     while ($row_product = mysqli_fetch_array($query_product_list)) {
-                                        $hinhanh_url_cat = './admin/modules/quanlysp/handleEvent/uploads/' . rawurlencode($row_product['hinhanh']);
+                                        $hinhanh_url_cat = './admin/modules/quanlysp/handleEvent/product/' . rawurlencode($row_product['hinhanh']);
                                     ?>
                                     <div class="col col-lg-2-4 col-md-3 col-6 mb-10">
                                         <div class="row__item item--product">

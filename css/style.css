@@ -42,11 +42,11 @@ html {
   line-height: 1.6rem;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  color: #e0e0e0; /* MÃ u chá»¯ máº·c Ä‘á»‹nh cho vÄƒn báº£n trÃªn ná»n Ä‘en */
+  color: #e0e0e0; /* Màu chữ mặc định cho văn bản trên nền đen */
 }
 
 body {
-  background-color: #000000 !important;
+  background-color: #403a3a !important;
   overflow-x: hidden;
 }
 
@@ -265,11 +265,7 @@ select option {
   width: 100%;
   z-index: 2;
   margin-top: -45px;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(245, 245, 245, 1) 100%
-  );
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(245, 245, 245, 1) 100%);
 }
 
 .collapse {
@@ -657,7 +653,8 @@ ul.page__pagination {
   font-size: 0.8em;
 }
 
-* --- Swiper Slider --- */ .slide_ads {
+* --- Swiper Slider --- */
+.slide_ads {
   border-radius: var(--card-border-radius);
   overflow: hidden; /* Ensure slides stay within bounds */
 }
@@ -731,12 +728,12 @@ ul.page__pagination {
   }
   /* Always show add-to-cart button on touch devices? Optional */
   /*
-      .item--product .row__item-container .add-to-cart-btn,
-      .item--product .row__item-container .add-to-cart-btn-not-login {
-          opacity: 1;
-          transform: translateY(0);
-      }
-      */
+    .item--product .row__item-container .add-to-cart-btn,
+    .item--product .row__item-container .add-to-cart-btn-not-login {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    */
 }
 
 @media (max-width: 576px) {
@@ -770,11 +767,12 @@ ul.page__pagination {
   }
 }
 
+
 /** HOME END **/
 
 /*********************************
-  1. Header
-  *********************************/
+1. Header
+*********************************/
 
 #header {
   position: fixed;
@@ -816,8 +814,8 @@ ul.page__pagination {
 }
 
 /*********************************
-  1.1 Top Bar
-  *********************************/
+1.1 Top Bar
+*********************************/
 
 ul.standard_dropdown {
   background-color: rgba(255, 255, 255, 0.1);
@@ -973,8 +971,8 @@ ul.standard_dropdown {
 }
 
 /*********************************
-  3.2 Header Main
-  *********************************/
+3.2 Header Main
+*********************************/
 
 .header_main {
   z-index: 1;
@@ -1186,8 +1184,8 @@ ul.standard_dropdown {
 }
 
 /*********************************
-  3.3 Main Navigation
-  *********************************/
+3.3 Main Navigation
+*********************************/
 
 .main_nav {
   width: 100%;
@@ -1232,8 +1230,8 @@ ul.standard_dropdown {
 }
 
 /*********************************
-  1. Header
-  *********************************/
+1. Header
+*********************************/
 
 /** FOOTER START **/
 .mid_footer {

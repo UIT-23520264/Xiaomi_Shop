@@ -6,15 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN</title>
-
+    <?php include('./js/link.php') ?>
 </head>
 
 <body>
     <div class="main-background"></div>
     <div class="app-container">
         <div class="main" id="main">
-
+            <?php include('./modules/menu.php') ?>
+            <?php
+            // $sql_privilege = "SELECT * FROM tbl_privilege WHERE id_admin='" . $_SESSION['dangnhap'] . "' LIMIT 1";
+            // $query_privilege = mysqli_query($mysqli, $sql_privilege);
+            // $row_privilege = mysqli_fetch_array($query_privilege);
+            ?>
             <div class="app-content">
+                <?php
+                // if ($row_privilege['list_user'] == 1) {
+                ?>
                 <div class="app-content-header">
                     <h1 class="app-content-headerText">Khách hàng</h1>
                 </div>
@@ -85,8 +93,228 @@
                     <div id="view-edit-user"></div>
                 </div>
 
+                <script>
+                $(document).ready(() => {
+                    var pageIndexMainCate = 1
+                    view_data();
+                    // View data
+                    function view_data() {
+                        $.post('modules/quanlykhachhang/handleEvent/listuserData.php?pageIndex=' +
+                            pageIndexMainCate,
+                            function(
+                                data) {
+                                $('#load_user_data').html(data)
+                            })
+                    }
 
+                    $(document).on("click", '.page-link.mainCate', function() {
+                        pageIndexMainCate = $(this).attr("value");
+                        $.ajax({
+                            url: 'modules/quanlykhachhang/handleEvent/listuserData.php?pageIndex=' +
+                                pageIndexMainCate,
+                            dataType: 'html',
+                            method: "post",
+                            cache: true,
+                            success: function() {
+                                view_data();
+                            },
+                            error: function() {
+                                view_data();
+                            }
+                        })
+                    })
 
+                    // Remove user
+                    $(document).on("click", '.remove-user', function() {
+                        var id = $(this).val();
+                        var url =
+                            "modules/quanlykhachhang/handleEvent/handleDeleteUser.php?iduser=" +
+                            id;
+                        swal({
+                                title: "Bạn có chắc muốn xóa khách hàng này không?",
+                                text: "Nếu có khach hang này sẽ bị xóa đi!",
+                                icon: "warning",
+                                buttons: {
+                                    cancel: {
+                                        text: "Thoát",
+                                        value: null,
+                                        visible: true,
+                                        closeModal: true,
+                                    },
+                                    confirm: {
+                                        text: "Chấp nhận",
+                                        value: true,
+                                        visible: true,
+                                        closeModal: true
+                                    }
+                                },
+                                dangerMode: true,
+                            })
+                            .then((willDelete) => {
+                                if (willDelete) {
+                                    swal("khách hàng đã bị xóa!", {
+                                        icon: "success",
+                                    });
+                                    $.post(url, (data) => {
+                                        view_data();
+                                    });
+                                }
+                            });
+                    })
+
+                    // Delete all user
+                    $(document).on("click", '.delete-all-user', function() {
+                        var url =
+                            "modules/quanlykhachhang/handleEvent/handleDeleteUser.php?action=deleteAll";
+                        swal({
+                                title: "Bạn có chắc muốn thực hiện thao tác không?",
+                                text: "Nếu có tất cả khách hàng sẽ bị xóa đi!",
+                                icon: "warning",
+                                buttons: {
+                                    cancel: {
+                                        text: "Thoát",
+                                        value: null,
+                                        visible: true,
+                                        closeModal: true,
+                                    },
+                                    confirm: {
+                                        text: "Chấp nhận",
+                                        value: true,
+                                        visible: true,
+                                        closeModal: true
+                                    }
+                                },
+                                dangerMode: true,
+                            })
+                            .then((willDelete) => {
+                                if (willDelete) {
+                                    swal("Tất cả khách hàng đã bị xóa!", {
+                                        icon: "success",
+                                    });
+                                    $.post(url, (data) => {
+                                        view_data();
+                                    });
+                                }
+                            });
+                    })
+
+                    // View detail user
+                    $(document).on("click", '.detail-user', function() {
+                        var id = $(this).val();
+                        var url =
+                            "modules/quanlykhachhang/viewDetailUser.php?idUser=" +
+                            id;
+                        $.post(url, (data) => {
+                            $("#view-detail-user").html(data);
+                        });
+                    })
+
+                    $(document).on("click", '.close-modal', function() {
+                        $("#category__add-model").remove();
+                    })
+
+                    $(document).on("click", '.modal__background', function() {
+                        $("#category__add-model").remove();
+                    })
+
+                    // Handle search
+                    var pageIndexCateSearch = 1;
+                    $(document).on("keyup", '.search-bar', function() {
+                        var searchInput = $(this).val();
+                        if (searchInput.length > 0) {
+                            $.ajax({
+                                url: "modules/quanlykhachhang/handleEvent/handleSearch.php?pageIndex=" +
+                                    pageIndexCateSearch,
+                                data: {
+                                    searchInput: searchInput,
+                                },
+                                dataType: 'html',
+                                method: "post",
+                                cache: true,
+                                success: function(data) {
+                                    $('#load_user_data').html(data)
+                                }
+                            })
+                        } else {
+                            view_data()
+                        }
+                    })
+
+                    $(document).on("click", '.page-link.searchCate', function() {
+                        pageIndexCateSearch = $(this).attr("value");
+                        var searchInput = $('.search-bar').val();
+                        if (searchInput.length > 0) {
+                            $.ajax({
+                                url: "modules/quanlykhachhang/handleEvent/handleSearch.php?pageIndex=" +
+                                    pageIndexCateSearch,
+                                data: {
+                                    searchInput: searchInput,
+                                },
+                                dataType: 'html',
+                                method: "post",
+                                cache: true,
+                                success: function(data) {
+                                    $('#load_user_data').html(data)
+                                }
+                            })
+                        } else {
+                            view_data()
+                        }
+                    })
+
+                    // Handle filter
+                    $(".jsFilter").on("click", function() {
+                        document.querySelector(".filter-menu-cate").classList.toggle("active");
+                    });
+
+                    var pageIndexCateFilter = 1
+                    $(document).on("click", '.filter-button.apply', function() {
+                        var dated = $('.filter_dated').val();
+                        $.ajax({
+                            url: "modules/quanlykhachhang/handleEvent/handleFilter.php?pageIndex=" +
+                                pageIndexCateFilter,
+                            data: {
+                                dated: dated
+                            },
+                            dataType: 'html',
+                            method: "post",
+                            cache: true,
+                            success: function(data) {
+                                $('#load_user_data').html(data)
+                            }
+                        })
+                    })
+
+                    $(document).on("click", '.page-link.searchCate', function() {
+                        pageIndexCateFilter = $(this).attr("value");
+                        var dated = $('.filter_dated').val();
+                        $.ajax({
+                            url: "modules/quanlykhachhang/handleEvent/handleFilter.php?pageIndex=" +
+                                pageIndexCateFilter,
+                            data: {
+                                dated: dated
+                            },
+                            dataType: 'html',
+                            method: "post",
+                            cache: true,
+                            success: function(data) {
+                                $('#load_user_data').html(data)
+                            }
+                        })
+                    })
+
+                    $(document).on("click", '.filter-button.reset', function() {
+                        $('.filter_status').val('2')
+                        $('.filter_dated').val('2')
+                    })
+                })
+                </script>
+                <?php
+                // } else {
+                ?>
+                <!-- <h1 style="color:#fff;">Bạn không có quyền thực hiện chức năng này</h1> -->
+                <?php //} 
+                ?>
             </div>
         </div>
     </div>

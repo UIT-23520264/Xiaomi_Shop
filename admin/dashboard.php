@@ -97,7 +97,76 @@
         </div>
     </div>
 
+    <script>
+    $(document).ready(() => {
+        $(document).on("click", '.update-revenue-btn', function() {
+            $.post('modules/quanlydashboard/loadCommentData.php')
+        })
 
+        function update_revenue_data() {
+            $.post('modules/quanlydashboard/handleUbdateRevenue.php')
+        }
+        update_revenue_data()
+
+
+        // View review data
+        function view_review_data() {
+            $.post('modules/quanlydashboard/loadReviewData.php',
+                function(data) {
+                    $('#load__review-data').html(data)
+                })
+        }
+        view_review_data()
+
+        // View comment data
+        function view_comment_data() {
+            $.post('modules/quanlydashboard/loadCommentData.php',
+                function(data) {
+                    $('#load__comment-data').html(data)
+                })
+        }
+        view_comment_data()
+
+        var char = new Morris.Line({
+
+            element: 'myfirstchart',
+
+            xkey: 'date',
+
+            ykeys: ['sales', 'quantity'],
+
+            labels: ['Doanh thu', 'Số lượng bán ra']
+        });
+
+        $(document).on("change", '.order-date-filter', function() {
+            var thoigian = $(this).val();
+            $.ajax({
+                url: "modules/quanlydashboard/handleStatistics.php",
+                method: 'POST',
+                data: {
+                    thoigian: thoigian
+                },
+                dataType: "json",
+                success: function(data) {
+                    char.setData(data);
+                }
+            })
+        })
+
+        function thongke() {
+            var text = '365 ngày qua';
+            $.ajax({
+                url: "modules/quanlydashboard/handleStatistics.php",
+                method: 'POST',
+                dataType: "json",
+                success: function(data) {
+                    char.setData(data);
+                }
+            })
+        }
+        thongke();
+    })
+    </script>
 </body>
 
 </html>

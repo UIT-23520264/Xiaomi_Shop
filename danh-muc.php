@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPM Camera</title>
+    <title>Mi Choice</title>
     <?php include('./js/link.php');
     include('admin/config/config.php'); ?>
 </head>

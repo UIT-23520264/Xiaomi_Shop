@@ -5,224 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>GPM Camera</title>
-    <style>
-    :root {
-        --primary-color: #2962ff;
-        --secondary-color: #455a64;
-        --accent-color: #ff6d00;
-        --text-color: #263238;
-        --light-gray: #f8f9fa;
-        --border-radius: 8px;
-        --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    body {
-        font-family: 'Roboto', sans-serif;
-        color: var(--text-color);
-        background-color: #f5f5f5;
-    }
-
-    .breadcrumb {
-        background: var(--light-gray);
-        padding: 15px;
-        border-radius: var(--border-radius);
-        margin: 20px 0;
-    }
-
-    .breadcrumb-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .product_title {
-        font-size: 2rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-    }
-
-    .product_rating {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 1.5rem;
-    }
-
-    .star_rating {
-        color: #ffc107;
-    }
-
-    .product_main-container {
-        background: white;
-        border-radius: var(--border-radius);
-        box-shadow: var(--box-shadow);
-        padding: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    .product_thumbnail {
-        width: 100%;
-        border-radius: var(--border-radius);
-        transition: transform 0.3s ease;
-        cursor: zoom-in;
-    }
-
-    .product_thumbnail:hover {
-        transform: scale(1.02);
-    }
-
-    .price_wrapper {
-        margin-bottom: 1.5rem;
-    }
-
-    .price_on_sale {
-        font-size: 2rem;
-        font-weight: 600;
-        color: var(--accent-color);
-    }
-
-    .price_original {
-        text-decoration: line-through;
-        color: #9e9e9e;
-        margin-left: 10px;
-    }
-
-    .product-short-description {
-        background: var(--light-gray);
-        padding: 1.5rem;
-        border-radius: var(--border-radius);
-        margin-bottom: 1.5rem;
-    }
-
-    .add-to-cart-button,
-    .buy_now {
-        width: 100%;
-        padding: 1rem;
-        border: none;
-        border-radius: var(--border-radius);
-        font-size: 1rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        transition: all 0.3s ease;
-    }
-
-    .add-to-cart-button {
-        background: var(--primary-color);
-        color: white;
-    }
-
-    .add-to-cart-button:hover {
-        background: #1565c0;
-        transform: translateY(-2px);
-    }
-
-    .buy_now {
-        background: var(--accent-color);
-        color: white;
-        text-decoration: none;
-        display: block;
-        text-align: center;
-    }
-
-    .buy_now:hover {
-        background: #f57c00;
-        transform: translateY(-2px);
-    }
-
-    .related__products-wrapper {
-        margin: 3rem 0;
-    }
-
-    .row__item {
-        background: white;
-        border-radius: var(--border-radius);
-        box-shadow: var(--box-shadow);
-        transition: transform 0.3s ease;
-        padding: 1rem;
-    }
-
-    .row__item:hover {
-        transform: translateY(-5px);
-    }
-
-    .review__product,
-    .comment__product {
-        background: white;
-        border-radius: var(--border-radius);
-        box-shadow: var(--box-shadow);
-        padding: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    .star__box {
-        background: var(--light-gray);
-        padding: 2rem;
-        border-radius: var(--border-radius);
-        margin-bottom: 2rem;
-    }
-
-    .comment__form textarea {
-        width: 100%;
-        border: 1px solid #dee2e6;
-        border-radius: var(--border-radius);
-        padding: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .comment__submit {
-        background: var(--primary-color);
-        color: white;
-        padding: 0.75rem 1.5rem;
-        border-radius: var(--border-radius);
-        cursor: pointer;
-        border: none;
-        transition: all 0.3s ease;
-    }
-
-    .comment__submit:hover {
-        background: #1565c0;
-        transform: translateY(-2px);
-    }
-
-    .product_preview {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-    }
-
-    .product_thumbnail-preview {
-        max-width: 90%;
-        max-height: 90vh;
-        object-fit: contain;
-    }
-
-    @media (max-width: 768px) {
-        .product_main-container {
-            padding: 1rem;
-        }
-
-        .product_title {
-            font-size: 1.5rem;
-        }
-
-        .star__box {
-            padding: 1rem;
-        }
-    }
-    </style>
+    <title>Mi Choice</title>
     <?php include('./js/link.php');
     include('./admin/config/config.php');
     ?>
+
 </head>
 
 <body class="container">
@@ -417,16 +204,101 @@
                             <?php if (isset($_SESSION['id_user'])) { ?>
                             <a class="buy_now add-to-cart-button-now" value="<?php echo $row_chitiet['id_sanpham'] ?>">
                                 <strong>MUA NGAY</strong>
+
+                                <span>Gọi điện xác nhận và giao hàng tận nơi</span>
                             </a>
                             <?php } else { ?>
                             <a class="buy_now-not-login">
                                 <strong>MUA NGAY</strong>
+                                <span>Gọi điện xác nhận và giao hàng tận nơi</span>
                             </a>
                             <?php } ?>
 
 
+                            <div class="social_icon">
+                                <i class="fa-brands fa-facebook-f"></i>
+                                <i class="fa-brands fa-twitter"></i>
+                                <i class="fa-regular fa-envelope"></i>
+                                <i class="fa-brands fa-pinterest-p"></i>
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </div>
+
+                            <div class="content_after_share">
+                                <p>Tư vấn bán hàng liên hệ:</p>
+                                <span style="color: #ff0000;"><a style="color: #ff0000;" title="Tư vấn bán hàng"
+                                        href="tel:0123.456.789">0123.456.789</a></span>
+                            </div>
                         </div>
 
+                        <div class="col-lg-3 col-12 product_sidebar hide-for-medium">
+                            <div class="featured__box-wrapper">
+
+                                <div class="featured__box">
+                                    <div class="featured__box-icon">
+                                        <img src="images/featuredBox/giao-hang-hikvision.png" alt="">
+                                    </div>
+                                    <div class="featured__box-text">
+                                        <p>
+                                            <strong>GIAO HÀNG NGAY</strong>
+                                            <br>
+                                            Giao hàng toàn quốc
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="featured__box">
+                                    <div class="featured__box-icon">
+                                        <img src="images/featuredBox/package-1.png" alt="">
+                                    </div>
+                                    <div class="featured__box-text">
+                                        <p>
+                                            <strong>ĐỔI HÀNG 07 NGÀY</strong>
+                                            <br>
+                                            Nếu lỗi do nhà sản xuất
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="featured__box">
+                                    <div class="featured__box-icon">
+                                        <img src="images/featuredBox/thanh-toan-camera-hikvision.png" alt="">
+                                    </div>
+                                    <div class="featured__box-text">
+                                        <p>
+                                            <strong>THANH TOÁN</strong>
+                                            <br>
+                                            Thanh toán khi nhận hàng
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="featured__box">
+                                    <div class="featured__box-icon">
+                                        <img src="images/featuredBox/dien-thoai-camera-hik.png" alt="">
+                                    </div>
+                                    <div class="featured__box-text">
+                                        <p>
+                                            <strong>TỔNG CSKH 9H00 -18H00</strong>
+                                            <br>
+                                            Hotline: 0123.456.789
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="featured__box">
+                                    <div class="featured__box-icon">
+                                        <img src="images/featuredBox/house.png" alt="">
+                                    </div>
+                                    <div class="featured__box-text">
+                                        <p>
+                                            <strong>UIT</strong>
+                                            <br>
+                                            Trường Đại học Công Nghệ Thông Tin
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

@@ -31,7 +31,7 @@ if (isset($_SESSION['id_user'])) {
     <div class="row  no-wrap cart align-items-center cart__wrapper">
         <div class="col-lg-1-5 col cart__img-product view__product-detail"
             value="<?php echo $row_cart['id_sanpham'] ?>"><img class="img-fluid"
-                src="./admin/modules/quanlysp/handleEvent/uploads/<?php echo $row_cart['hinhanh'] ?>">
+                src="./admin/modules/quanlysp/handleEvent/product/<?php echo $row_cart['hinhanh'] ?>">
         </div>
 
         <div class="col-lg-2-4 col ">

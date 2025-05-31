@@ -22,7 +22,7 @@ include('./js/link.php');
                     <div class="logo_container">
                         <div class="logo">
                             <a>
-                                <img src="images/logo.png" alt="logo">
+                                <img src="images/logo.jpg" alt="logo">
                             </a>
                         </div>
                     </div>
@@ -37,10 +37,10 @@ include('./js/link.php');
                                 <?php
                                 while ($row_danhmuc = mysqli_fetch_array($query_danhmuc)) {
                                 ?>
-                                <li>
-                                    <button class="category__product-btn"
-                                        value="<?php echo $row_danhmuc['id_danhmuc'] ?>"><?php echo $row_danhmuc['ten_danhmuc'] ?></button>
-                                </li>
+                                    <li>
+                                        <button class="category__product-btn"
+                                            value="<?php echo $row_danhmuc['id_danhmuc'] ?>"><?php echo $row_danhmuc['ten_danhmuc'] ?></button>
+                                    </li>
                                 <?php
                                 }
                                 ?>
@@ -88,9 +88,9 @@ include('./js/link.php');
                                 }
                                 if ($sosp > 0) {
                                 ?>
-                                <div class="cart_count"><span><?php echo $sosp ?></span></div>
+                                    <div class="cart_count"><span><?php echo $sosp ?></span></div>
                                 <?php } else { ?>
-                                <div class="cart_count"><span>0</span></div>
+                                    <div class="cart_count"><span>0</span></div>
                                 <?php } ?>
                             </a>
                         </div>
@@ -98,10 +98,10 @@ include('./js/link.php');
                         <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                             <div class="user__option">
                                 <?php if (isset($_SESSION['id_user'])) { ?>
-                                <i class="fa-solid fa-user roi"></i>
-                                <div id="load-user-modal"></div>
+                                    <i class="fa-solid fa-user roi"></i>
+                                    <div id="load-user-modal"></div>
                                 <?php } else { ?>
-                                <i class="fa-solid fa-user chua"></i>
+                                    <i class="fa-solid fa-user chua"></i>
                                 <?php } ?>
                             </div>
                         </div>
@@ -129,10 +129,10 @@ include('./js/link.php');
                 $query_danhmuc = mysqli_query($mysqli, $sql_danhmuc);
                 while ($row_danhmuc = mysqli_fetch_array($query_danhmuc)) {
                 ?>
-                <li>
-                    <button class="category__product-btn"
-                        value="<?php echo $row_danhmuc['id_danhmuc'] ?>"><?php echo $row_danhmuc['ten_danhmuc'] ?></button>
-                </li>
+                    <li>
+                        <button class="category__product-btn"
+                            value="<?php echo $row_danhmuc['id_danhmuc'] ?>"><?php echo $row_danhmuc['ten_danhmuc'] ?></button>
+                    </li>
                 <?php
                 }
                 ?>
@@ -152,156 +152,121 @@ include('./js/link.php');
 
 <div id="view__login"></div>
 <script>
-$(document).ready(() => {
-    $(window).on("load", () => {
-        $('.loader-wrapper').fadeOut()
-    })
+    $(document).ready(() => {
+        $(window).on("load", () => {
+            $('.loader-wrapper').fadeOut()
+        })
 
-    $(document).on("click", '.standard_dropdown li', function() {
-        $(".standard_dropdown li > ul").css("display", "block");
-        $(".menu-background").css("display", "block");
-    })
+        $(document).on("click", '.standard_dropdown li', function() {
+            $(".standard_dropdown li > ul").css("display", "block");
+            $(".menu-background").css("display", "block");
+        })
 
-    $(document).on("click", '.menu-background', function() {
-        $(".standard_dropdown li > ul").css("display", "none");
-        $(".menu-background").css("display", "none");
-    })
+        $(document).on("click", '.menu-background', function() {
+            $(".standard_dropdown li > ul").css("display", "none");
+            $(".menu-background").css("display", "none");
+        })
 
-    $(document).on("click", '.header_open-menu', function() {
-        $(".main__menu").css("display", "block");
-    })
+        $(document).on("click", '.header_open-menu', function() {
+            $(".main__menu").css("display", "block");
+        })
 
-    $(document).on("click", '.main__menu-close', function() {
-        $(".main__menu").css("display", "none");
-    })
+        $(document).on("click", '.main__menu-close', function() {
+            $(".main__menu").css("display", "none");
+        })
 
-    $(document).on("click", '.main__menu-background', function() {
-        $(".main__menu").css("display", "none");
-    })
+        $(document).on("click", '.main__menu-background', function() {
+            $(".main__menu").css("display", "none");
+        })
 
-    $(document).on("click", '.category__product-btn', function() {
-        var id = $(this).attr('value');
-        var url = "danh-muc.php?id=" + id;
-        window.history.pushState("new", "title", url);
-        $(".container").load("danh-muc.php?id=" + id);
-        window.location.reload();
-    })
+        $(document).on("click", '.category__product-btn', function() {
+            var id = $(this).attr('value');
+            var url = "danh-muc.php?id=" + id;
+            window.history.pushState("new", "title", url);
+            $(".container").load("danh-muc.php?id=" + id);
+            window.location.reload();
+        })
 
-    $(document).on("click", '.logo a', function() {
-        var url = "trang-chu.php";
-        window.history.pushState("new", "title", url);
-        $(".container").load("trang-chu.php");
-        window.location.reload();
-    })
+        $(document).on("click", '.logo a', function() {
+            var url = "trang-chu.php";
+            window.history.pushState("new", "title", url);
+            $(".container").load("trang-chu.php");
+            window.location.reload();
+        })
 
-    $(document).on("click", '.user__option i.chua', function() {
-        $("#view__login").load("pages/login.php");
-    })
+        $(document).on("click", '.user__option i.chua', function() {
+            $("#view__login").load("pages/login.php");
+        })
 
-    $(document).on("click", '.user__option i.roi', function() {
-        $("#load-user-modal").load("pages/userOptionModal.php");
-    })
+        $(document).on("click", '.user__option i.roi', function() {
+            $("#load-user-modal").load("pages/userOptionModal.php");
+        })
 
-    $(document).on("click", '.user-modal-background', function() {
-        $(".user-modal-wrapper").remove()
-    })
+        $(document).on("click", '.user-modal-background', function() {
+            $(".user-modal-wrapper").remove()
+        })
 
 
-    $(document).on("click", '.register-btn', function() {
-        $("#view__login").load("pages/register.php");
-    })
+        $(document).on("click", '.register-btn', function() {
+            $("#view__login").load("pages/register.php");
+        })
 
-    $(document).on("click", '.login-btn', function() {
-        $("#view__login").load("pages/login.php");
-    })
+        $(document).on("click", '.login-btn', function() {
+            $("#view__login").load("pages/login.php");
+        })
 
-    $(document).on("click", '.logout', function() {
-        $.post('pages/handleEvent/handleLogin.php?logout=' + 1, (data) => {
-            setTimeout(function() {
-                var url = "trang-chu.php";
-                window.history.pushState("new", "title", url);
-                $(".container").load("trang-chu.php");
-                window.location.reload();
-            }, 1000);
-        });
-
-    })
-
-    $(document).on("click", '.profile', function() {
-        var url = "thong-tin-khach-hang.php";
-        window.history.pushState("new", "title", url);
-        $(".container").load("thong-tin-khach-hang.php");
-        window.location.reload();
-    })
-
-    $(document).on("click", '.modal-background', function() {
-        $(".wrapper").remove();
-    })
-
-    $(document).on("click", '.close-login-modal', function() {
-        $(".wrapper").remove();
-    })
-
-    $(document).on("click", '.close-register-modal', function() {
-        $(".wrapper").remove();
-    })
-
-    $(document).on("click", '.scroll-to-bottom ', function() {
-        var height = $(document).height();
-        height = height - 1070;
-        $(window).scrollTop(height);
-        $('.scroll-to-bottom ').css("display", "none");
-        $('.scroll-to-top').css("display", "block");
-    })
-
-    $(document).on("click", '.scroll-to-top ', function() {
-        $('.scroll-to-bottom ').css("display", "block");
-        $(window).scrollTop(0);
-        $('.scroll-to-top ').css("display", "none");
-    })
-
-    window.onpopstate = function() {
-        window.location.reload();
-    };
-
-    // Search
-    $(document).on("click", '.header_search_button ', function() {
-        var searchInput = $('.header_search_input').val();
-
-        let errors = {
-            lengthError: ''
-        }
-
-        if (searchInput.length >= 100) {
-            errors.lengthError = 'Không được nhập quá 100 ký tự'
-            swal("Vui lòng nhập lại", errors.lengthError, "error");
-        } else {
-            errors.lengthError = '';
-        }
-
-        if (errors.lengthError === '') {
-            $.ajax({
-                url: "tim-kiem.php",
-                data: {
-                    searchInput: searchInput,
-                },
-                dataType: 'html',
-                method: "post",
-                cache: true,
-                success: function(data) {
-                    let searchInputModified = searchInput.replace(/\s+/g, '-');
-                    var url = "tim-kiem.php?tukhoa=" + searchInputModified;
+        $(document).on("click", '.logout', function() {
+            $.post('pages/handleEvent/handleLogin.php?logout=' + 1, (data) => {
+                setTimeout(function() {
+                    var url = "trang-chu.php";
                     window.history.pushState("new", "title", url);
-                    $(".container").load("tim-kiem.php?tukhoa=" + searchInputModified);
+                    $(".container").load("trang-chu.php");
                     window.location.reload();
-                },
-            })
-        }
-    })
+                }, 1000);
+            });
 
-    $(document).on("keypress", '.header_search_input', function(e) {
-        var searchInput = $('.header_search_input').val();
-        if (e.keyCode === 13 && searchInput) {
+        })
+
+        $(document).on("click", '.profile', function() {
+            var url = "thong-tin-khach-hang.php";
+            window.history.pushState("new", "title", url);
+            $(".container").load("thong-tin-khach-hang.php");
+            window.location.reload();
+        })
+
+        $(document).on("click", '.modal-background', function() {
+            $(".wrapper").remove();
+        })
+
+        $(document).on("click", '.close-login-modal', function() {
+            $(".wrapper").remove();
+        })
+
+        $(document).on("click", '.close-register-modal', function() {
+            $(".wrapper").remove();
+        })
+
+        $(document).on("click", '.scroll-to-bottom ', function() {
+            var height = $(document).height();
+            height = height - 1070;
+            $(window).scrollTop(height);
+            $('.scroll-to-bottom ').css("display", "none");
+            $('.scroll-to-top').css("display", "block");
+        })
+
+        $(document).on("click", '.scroll-to-top ', function() {
+            $('.scroll-to-bottom ').css("display", "block");
+            $(window).scrollTop(0);
+            $('.scroll-to-top ').css("display", "none");
+        })
+
+        window.onpopstate = function() {
+            window.location.reload();
+        };
+
+        // Search
+        $(document).on("click", '.header_search_button ', function() {
+            var searchInput = $('.header_search_input').val();
 
             let errors = {
                 lengthError: ''
@@ -332,131 +297,166 @@ $(document).ready(() => {
                     },
                 })
             }
-        }
-    })
+        })
 
-    /* HANDLE CART START */
-    view_data()
+        $(document).on("keypress", '.header_search_input', function(e) {
+            var searchInput = $('.header_search_input').val();
+            if (e.keyCode === 13 && searchInput) {
 
-    function view_data() {
-        $.ajax({
-            url: "pages/Cart/handleCartData.php",
-            dataType: 'json',
-            method: "post",
-            cache: true,
-            success: function(data) {
-                $('.cart_count span').html(data.sosp);
-            },
-            error: function(data) {
-                $('.cart_count span').html(data.sosp);
+                let errors = {
+                    lengthError: ''
+                }
+
+                if (searchInput.length >= 100) {
+                    errors.lengthError = 'Không được nhập quá 100 ký tự'
+                    swal("Vui lòng nhập lại", errors.lengthError, "error");
+                } else {
+                    errors.lengthError = '';
+                }
+
+                if (errors.lengthError === '') {
+                    $.ajax({
+                        url: "tim-kiem.php",
+                        data: {
+                            searchInput: searchInput,
+                        },
+                        dataType: 'html',
+                        method: "post",
+                        cache: true,
+                        success: function(data) {
+                            let searchInputModified = searchInput.replace(/\s+/g, '-');
+                            var url = "tim-kiem.php?tukhoa=" + searchInputModified;
+                            window.history.pushState("new", "title", url);
+                            $(".container").load("tim-kiem.php?tukhoa=" + searchInputModified);
+                            window.location.reload();
+                        },
+                    })
+                }
             }
         })
-    }
-    // Add to cart
-    $(document).on("click", '.add-to-cart-btn', function(e) {
-        e.preventDefault()
-        var productID = $(this).val();
-        $.ajax({
-            url: "pages/Cart/handleAddToCart.php",
-            data: {
-                id_sanpham: productID,
-            },
-            dataType: 'json',
-            method: "post",
-            cache: true,
-            success: function(data) {
-                if (data.hethang == 1) {
-                    swal("Sản phẩm đã hết hàng",
-                        "Vui lòng chọn mua sản phẩm khác!",
-                        "error");
+
+        /* HANDLE CART START */
+        view_data()
+
+        function view_data() {
+            $.ajax({
+                url: "pages/Cart/handleCartData.php",
+                dataType: 'json',
+                method: "post",
+                cache: true,
+                success: function(data) {
+                    $('.cart_count span').html(data.sosp);
+                },
+                error: function(data) {
+                    $('.cart_count span').html(data.sosp);
                 }
-                view_data()
-            },
-            error: function(data) {
-                view_data()
-            },
+            })
+        }
+        // Add to cart
+        $(document).on("click", '.add-to-cart-btn', function(e) {
+            e.preventDefault()
+            var productID = $(this).val();
+            $.ajax({
+                url: "pages/Cart/handleAddToCart.php",
+                data: {
+                    id_sanpham: productID,
+                },
+                dataType: 'json',
+                method: "post",
+                cache: true,
+                success: function(data) {
+                    if (data.hethang == 1) {
+                        swal("Sản phẩm đã hết hàng",
+                            "Vui lòng chọn mua sản phẩm khác!",
+                            "error");
+                    }
+                    view_data()
+                },
+                error: function(data) {
+                    view_data()
+                },
+            })
         })
-    })
 
-    $(document).on("click", '.add-to-cart-btn-not-login', function() {
-        swal("Bạn cần đăng nhập để thêm giỏ hàng",
-            "Vui lòng đăng nhập hoặc đăng ký tài khoản!",
-            "error");
-    })
-
-    $(document).on("click", '.buy_now-not-login', function() {
-        swal("Bạn cần đăng nhập để thêm giỏ hàng",
-            "Vui lòng đăng nhập hoặc đăng ký tài khoản!",
-            "error");
-    })
-
-    $(document).on("click", '.add-to-cart-button', function(e) {
-        e.preventDefault();
-        var productID = $(this).attr("value");
-        $.ajax({
-            url: "pages/Cart/handleAddToCart.php",
-            data: {
-                id_sanpham: productID,
-            },
-            dataType: 'json',
-            method: "post",
-            cache: true,
-            success: function(data) {
-                if (data.hethang == 1) {
-                    swal("Sản phẩm đã hết hàng",
-                        "Vui lòng chọn mua sản phẩm khác!",
-                        "error");
-                }
-                view_data()
-            },
-            error: function(data) {
-                view_data()
-            },
+        $(document).on("click", '.add-to-cart-btn-not-login', function() {
+            swal("Bạn cần đăng nhập để thêm giỏ hàng",
+                "Vui lòng đăng nhập hoặc đăng ký tài khoản!",
+                "error");
         })
-    })
 
-    $(document).on("click", '.add-to-cart-button-now', function(e) {
-        e.preventDefault();
-        var productID = $(this).attr("value");
-        $.ajax({
-            url: "pages/Cart/handleAddToCart.php",
-            data: {
-                id_sanpham: productID,
-            },
-            dataType: 'json',
-            method: "post",
-            cache: true,
-            success: function(data) {
-                if (data.hethang == 1) {
-                    swal("Sản phẩm đã hết hàng",
-                        "Vui lòng chọn mua sản phẩm khác!",
-                        "error");
-                }
-                view_data()
-            },
-            error: function(data) {
-                view_data()
-            },
+        $(document).on("click", '.buy_now-not-login', function() {
+            swal("Bạn cần đăng nhập để thêm giỏ hàng",
+                "Vui lòng đăng nhập hoặc đăng ký tài khoản!",
+                "error");
         })
-        var url = "gio-hang.php";
-        window.history.pushState("new", "title", url);
-        $(".container").load("gio-hang.php");
-        window.location.reload();
-    })
 
-    $(document).on("click", '.add-to-cart-button-not-login', function() {
-        swal("Bạn cần đăng nhập để thêm giỏ hàng",
-            "Vui lòng đăng nhập hoặc đăng ký tài khoản!",
-            "error");
-    })
+        $(document).on("click", '.add-to-cart-button', function(e) {
+            e.preventDefault();
+            var productID = $(this).attr("value");
+            $.ajax({
+                url: "pages/Cart/handleAddToCart.php",
+                data: {
+                    id_sanpham: productID,
+                },
+                dataType: 'json',
+                method: "post",
+                cache: true,
+                success: function(data) {
+                    if (data.hethang == 1) {
+                        swal("Sản phẩm đã hết hàng",
+                            "Vui lòng chọn mua sản phẩm khác!",
+                            "error");
+                    }
+                    view_data()
+                },
+                error: function(data) {
+                    view_data()
+                },
+            })
+        })
 
-    // Open cart page
-    $(document).on("click", '.cart_icon', function() {
-        var url = "gio-hang.php";
-        window.history.pushState("new", "title", url);
-        $(".container").load("gio-hang.php");
-        window.location.reload();
+        $(document).on("click", '.add-to-cart-button-now', function(e) {
+            e.preventDefault();
+            var productID = $(this).attr("value");
+            $.ajax({
+                url: "pages/Cart/handleAddToCart.php",
+                data: {
+                    id_sanpham: productID,
+                },
+                dataType: 'json',
+                method: "post",
+                cache: true,
+                success: function(data) {
+                    if (data.hethang == 1) {
+                        swal("Sản phẩm đã hết hàng",
+                            "Vui lòng chọn mua sản phẩm khác!",
+                            "error");
+                    }
+                    view_data()
+                },
+                error: function(data) {
+                    view_data()
+                },
+            })
+            var url = "gio-hang.php";
+            window.history.pushState("new", "title", url);
+            $(".container").load("gio-hang.php");
+            window.location.reload();
+        })
+
+        $(document).on("click", '.add-to-cart-button-not-login', function() {
+            swal("Bạn cần đăng nhập để thêm giỏ hàng",
+                "Vui lòng đăng nhập hoặc đăng ký tài khoản!",
+                "error");
+        })
+
+        // Open cart page
+        $(document).on("click", '.cart_icon', function() {
+            var url = "gio-hang.php";
+            window.history.pushState("new", "title", url);
+            $(".container").load("gio-hang.php");
+            window.location.reload();
+        })
+        /* HANDLE CART START */
     })
-    /* HANDLE CART START */
-})
 </script>

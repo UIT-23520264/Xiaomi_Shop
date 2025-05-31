@@ -105,6 +105,259 @@
                     <div id="view-privilege-member"></div>
                     <div id="view-edit-member"></div>
                 </div>
+                <script>
+                $(document).ready(() => {
+                    var pageIndexMainMember = 1
+                    view_data();
+                    // View data
+                    function view_data() {
+                        $.post('modules/quanlythanhvien/handleEvent/listMemberData.php?pageIndex=' +
+                            pageIndexMainMember,
+                            function(
+                                data) {
+                                $('#load_member_data').html(data)
+                            })
+                    }
+
+                    $(document).on("click", '.page-link.mainMember', function() {
+                        pageIndexMainMember = $(this).attr("value");
+                        $.ajax({
+                            url: 'modules/quanlythanhvien/handleEvent/listMemberData.php?pageIndex=' +
+                                pageIndexMainMember,
+                            dataType: 'html',
+                            method: "post",
+                            cache: true,
+                            success: function() {
+                                view_data();
+                            },
+                            error: function() {
+                                view_data();
+                            }
+                        })
+                    })
+
+                    // Add member
+                    $(document).on("click", '.add-new-member-btn', function() {
+                        var id = $(this).val();
+                        var url =
+                            "modules/quanlythanhvien/addNewMember.php";
+                        $.post(url, (data) => {
+                            $("#view-add-member").html(data);
+                        });
+                    })
+
+                    $(document).on("click", '.close-modal', function() {
+                        $("#member__add-model").remove();
+                    })
+
+                    $(document).on("click", '.modal__background', function() {
+                        $("#member__add-model").remove();
+                    })
+
+                    // Remove member
+                    $(document).on("click", '.remove-member', function() {
+                        var id = $(this).val();
+                        var url =
+                            "modules/quanlythanhvien/handleEvent/handleDeleteMember.php?idmember=" +
+                            id;
+                        swal({
+                                title: "Bạn có chắc muốn xóa thành viên này không?",
+                                text: "Nếu có thành viên này sẽ bị xóa đi!",
+                                icon: "warning",
+                                buttons: {
+                                    cancel: {
+                                        text: "Thoát",
+                                        value: null,
+                                        visible: true,
+                                        closeModal: true,
+                                    },
+                                    confirm: {
+                                        text: "Chấp nhận",
+                                        value: true,
+                                        visible: true,
+                                        closeModal: true
+                                    }
+                                },
+                                dangerMode: true,
+                            })
+                            .then((willDelete) => {
+                                if (willDelete) {
+                                    swal("thành viên đã bị xóa!", {
+                                        icon: "success",
+                                    });
+                                    $.post(url, (data) => {
+                                        view_data();
+                                    });
+                                }
+                            });
+                    })
+
+                    // Delete all member
+                    $(document).on("click", '.delete-all-member', function() {
+                        var url =
+                            "modules/quanlythanhvien/handleEvent/handleDeletemember.php?action=deleteAll";
+                        swal({
+                                title: "Bạn có chắc muốn thực hiện thao tác không?",
+                                text: "Nếu có tất cả thành viên sẽ bị xóa đi!",
+                                icon: "warning",
+                                buttons: {
+                                    cancel: {
+                                        text: "Thoát",
+                                        value: null,
+                                        visible: true,
+                                        closeModal: true,
+                                    },
+                                    confirm: {
+                                        text: "Chấp nhận",
+                                        value: true,
+                                        visible: true,
+                                        closeModal: true
+                                    }
+                                },
+                                dangerMode: true,
+                            })
+                            .then((willDelete) => {
+                                if (willDelete) {
+                                    swal("Tất cả thành viên đã bị xóa!", {
+                                        icon: "success",
+                                    });
+                                    $.post(url, (data) => {
+                                        view_data();
+                                    });
+                                }
+                            });
+                    })
+
+                    // Edit member
+                    $(document).on("click", '.edit-member', function() {
+                        var id = $(this).val();
+                        var url =
+                            "modules/quanlythanhvien/editMember.php?idmember=" +
+                            id;
+                        $.post(url, (data) => {
+                            $("#view-edit-member").html(data);
+                        });
+                    })
+
+                    $(document).on("click", '.close-modal', function() {
+                        $("#member__add-model").remove();
+                    })
+
+                    $(document).on("click", '.modal__background', function() {
+                        $("#member__add-model").remove();
+                    })
+
+                    // Privilege member
+                    $(document).on("click", '.privilege-member', function() {
+                        var id = $(this).val();
+                        var url =
+                            "modules/quanlythanhvien/viewPrivilegeMember.php?idmember=" +
+                            id;
+                        $.post(url, (data) => {
+                            $("#view-privilege-member").html(data);
+                        });
+                    })
+
+                    $(document).on("click", '.close-modal', function() {
+                        $("#member__add-model").remove();
+                    })
+
+                    $(document).on("click", '.modal__background', function() {
+                        $("#member__add-model").remove();
+                    })
+
+                    // Handle search
+                    var pageIndexMemberSearch = 1;
+                    $(document).on("keyup", '.search-bar', function() {
+                        var searchInput = $(this).val();
+                        if (searchInput.length > 0) {
+                            $.ajax({
+                                url: "modules/quanlythanhvien/handleEvent/handleSearch.php?pageIndex=" +
+                                    pageIndexMemberSearch,
+                                data: {
+                                    searchInput: searchInput,
+                                },
+                                dataType: 'html',
+                                method: "post",
+                                cache: true,
+                                success: function(data) {
+                                    $('#load_member_data').html(data)
+                                }
+                            })
+                        } else {
+                            view_data()
+                        }
+                    })
+
+                    $(document).on("click", '.page-link.searchMember', function() {
+                        pageIndexMemberSearch = $(this).attr("value");
+                        var searchInput = $('.search-bar').val();
+                        if (searchInput.length > 0) {
+                            $.ajax({
+                                url: "modules/quanlythanhvien/handleEvent/handleSearch.php?pageIndex=" +
+                                    pageIndexMemberSearch,
+                                data: {
+                                    searchInput: searchInput,
+                                },
+                                dataType: 'html',
+                                method: "post",
+                                cache: true,
+                                success: function(data) {
+                                    $('#load_member_data').html(data)
+                                }
+                            })
+                        } else {
+                            view_data()
+                        }
+                    })
+
+                    // Handle filter
+                    $(".jsFilter").on("click", function() {
+                        document.querySelector(".filter-menu-cate").classList.toggle("active");
+                    });
+
+                    var pageIndexMemberFilter = 1
+                    $(document).on("click", '.filter-button.apply', function() {
+                        var duty = $('.filter_duty').val();
+                        $.ajax({
+                            url: "modules/quanlythanhvien/handleEvent/handleFilter.php?pageIndex=" +
+                                pageIndexMemberFilter,
+                            data: {
+                                duty: duty,
+                            },
+                            dataType: 'html',
+                            method: "post",
+                            cache: true,
+                            success: function(data) {
+                                $('#load_member_data').html(data)
+                            }
+                        })
+                    })
+
+                    $(document).on("click", '.page-link.search', function() {
+                        pageIndexMemberFilter = $(this).attr("value");
+                        var duty = $('.filter_duty').val();
+                        $.ajax({
+                            url: "modules/quanlythanhvien/handleEvent/handleFilter.php?pageIndex=" +
+                                pageIndexMemberFilter,
+                            data: {
+                                duty: duty,
+                            },
+                            dataType: 'html',
+                            method: "post",
+                            cache: true,
+                            success: function(data) {
+                                $('#load_member_data').html(data)
+                            }
+                        })
+                    })
+
+                    $(document).on("click", '.filter-button.reset', function() {
+                        $('.filter_duty').val('2')
+                        $('.filter_dated').val('2')
+                    })
+                })
+                </script>
                 <?php
                 } else {
                 ?>

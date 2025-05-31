@@ -98,14 +98,14 @@ $row_privilege = mysqli_fetch_array($query_privilege)
     }
     ?>
     <?php
-    if (true) {
+    //if (true) {
     ?>
-    <button class="sidebar-list-item">
+    <!-- <button class="sidebar-list-item">
         <a class="list-user">Quản lý khách hàng</a>
         <img class="list-user" title="Quản lý khách hàng" src="../../images/icon/guests.png" alt="">
-    </button>
+    </button> -->
     <?php
-    }
+    //}
     ?>
 </div>
 <div id="view-edit-account"></div>

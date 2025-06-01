@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPM Camera</title>
+    <title>Mi Choice</title>
     <?php include('./js/link.php');
     include('admin/config/config.php'); ?>
 </head>
@@ -100,8 +100,7 @@ session_start();
                             <?php
                                 if (isset($_SESSION['id_user']) && mysqli_num_rows($query_cart) > 0) {
                                 ?>
-                            <div class="pay-product-btn">THANH
-                                TOÁN</div>
+                            <div class="pay-product-btn">THANH TOÁN</div>
                             <?php } ?>
                         </div>
                         <?php } else { ?>

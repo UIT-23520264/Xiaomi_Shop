@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPM Camera</title>
+    <title>Mi Choice</title>
     <?php include('./js/link.php');
     include('admin/config/config.php'); ?>
     <style>
@@ -402,10 +402,10 @@ session_start();
                         </div>
                         <div class="profile__info-item">
                             <span class="profile__info-value"><?php
-                            $sql_user = "SELECT * FROM tbl_user WHERE id_user='$_SESSION[id_user]'";
-                            $query_user = mysqli_query($mysqli, $sql_user);
-                            $row_user = mysqli_fetch_array($query_user);
-                            echo $row_user['name'] ?></span>
+                                                                $sql_user = "SELECT * FROM tbl_user WHERE id_user='$_SESSION[id_user]'";
+                                                                $query_user = mysqli_query($mysqli, $sql_user);
+                                                                $row_user = mysqli_fetch_array($query_user);
+                                                                echo $row_user['name'] ?></span>
                         </div>
                     </div>
 

@@ -28,8 +28,8 @@ ORDER BY
     CASE WHEN $filter = 7 THEN giamgia END ASC,
     CASE WHEN $filter = 8 THEN daban END DESC,
     CASE WHEN $filter = 9 THEN daban END ASC,
-    CASE WHEN $filter = 10 THEN average_rating END DESC,
-    CASE WHEN $filter = 11 THEN average_rating END ASC,
+    CASE WHEN $filter = 10 THEN averange_rating END DESC,
+    CASE WHEN $filter = 11 THEN averange_rating END ASC,
     CASE WHEN $filter = 12 THEN last_updated END ASC,
     CASE WHEN $filter = 13 THEN last_updated END DESC
 LIMIT " . $item_per_page . " OFFSET " . $offset . " ";

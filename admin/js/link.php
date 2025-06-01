@@ -1,5 +1,4 @@
-<link rel="icon" href="//bizweb.dktcdn.net/100/291/775/themes/830344/assets/favicon.png?1644737353191"
-    type="image/x-icon" />
+<link rel="icon" href="C:\project\Xiaomi_Shop\images\logo.jpg" type="image/x-icon" />
 <!-- CSS -->
 <link rel="stylesheet" href="css/styleadmin.css">
 <link rel="stylesheet" href="css/loginad.css">

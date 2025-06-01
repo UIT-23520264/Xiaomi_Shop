@@ -160,6 +160,15 @@ input {
   margin: 0;
 }
 
+.update-revenue-btn {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background: #1dbfaf;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 .app-content-headerButton {
   background-color: var(--action-color);
   color: #fff;

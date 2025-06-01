@@ -14,7 +14,7 @@
          OR ($priceRange = 2 AND tbl_sanpham.giasp >= 500000))
     ORDER BY 
         CASE WHEN $value = 0 THEN daban END ASC,
-        CASE WHEN $value = 1 THEN average_rating END DESC,
+        CASE WHEN $value = 1 THEN averange_rating END DESC,
         CASE WHEN $value = 2 THEN last_updated END ASC,
         CASE WHEN $value = 3 THEN giadagiam END ASC,
         CASE WHEN $value = 4 THEN giadagiam END DESC

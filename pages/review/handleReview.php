@@ -25,5 +25,5 @@ while ($row_review = mysqli_fetch_array($query_review)) {
 if ($reviewCount > 0) {
     $starAverage = round($reviewRating / $reviewCount, 2);
 }
-$sql_update = "UPDATE `tbl_sanpham` SET `average_rating`='$starAverage'  WHERE id_sanpham=$idProduct ";
+$sql_update = "UPDATE `tbl_sanpham` SET `averange_rating`='$starAverage'  WHERE id_sanpham=$idProduct ";
 $query_update = mysqli_query($mysqli, $sql_update);

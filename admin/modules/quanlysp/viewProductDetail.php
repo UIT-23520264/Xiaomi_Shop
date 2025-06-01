@@ -56,7 +56,7 @@
                 </div>
                 <div class="model__content">
                     <label class="col-2">Đánh giá trung bình: </label>
-                    <input readonly type="number" value="<?php echo $row['average_rating'] ?>" />
+                    <input readonly type="number" value="<?php echo $row['averange_rating'] ?>" />
                 </div>
                 <div class="model__content">
                     <label class="col-2">Trạng thái: </label>

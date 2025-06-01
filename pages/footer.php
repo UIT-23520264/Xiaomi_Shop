@@ -27,19 +27,13 @@
                     <div class="social_footer">
                         <ul class="social__option-list">
                             <li>
-                                <a href="https://www.facebook.com/UIT.Fanpage"
-                                    title="Theo dõi Facebook Công ty TNHH MTV Thiết bị và Phần mềm GPM Việt Nam"><i
-                                        class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.facebook.com/UIT.Fanpage"><i class="fab fa-facebook-f"></i></a>
                             </li>
                             <li>
-                                <a href="https://www.uit.edu.vn/"
-                                    title="Theo dõi Google Plus Công ty TNHH MTV Thiết bị và Phần mềm GPM Việt Nam"><i
-                                        class="fab fa-google"></i></a>
+                                <a href="https://www.uit.edu.vn/"><i class="fab fa-google"></i></a>
                             </li>
                             <li>
-                                <a href="https://www.instagram.com/"
-                                    title="Theo dõi Instagam Công ty TNHH MTV Thiết bị và Phần mềm GPM Việt Nam"><i
-                                        class="fab fa-instagram"></i></a>
+                                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
                             </li>
                         </ul>
                     </div>

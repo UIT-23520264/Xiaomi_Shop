@@ -12,13 +12,12 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPM Camera</title>
+    <title>MiChoice</title>
     <?php
     // Include các link CSS/JS cần thiết (Bootstrap, FontAwesome, Swiper CSS, style.css...)
     include('./js/link.php');
     ?>
     <!-- Link CSS riêng cho trang chủ hoặc theme (đảm bảo file này tồn tại) -->
-    <link rel="stylesheet" href="trangchu-css.css">
     <!-- Hoặc có thể là css/dark-theme.css tùy theo cài đặt của bạn -->
     <link rel="stylesheet" href="css/style.css"> <!-- Link đến style.css chung -->
     <link rel="stylesheet" href="css/dark-theme.css"> <!-- Link đến theme tối (nếu dùng) -->
@@ -56,11 +55,13 @@ if (session_status() == PHP_SESSION_NONE) {
                                         <div class="swiper mySwiper">
                                             <div class="swiper-wrapper">
                                                 <div class="swiper-slide">
-                                                    <img src="images/ads/qc1.png" alt="Quảng cáo 1">
+                                                    <img src="images/ads/qc1.jpg" alt="Quảng cáo 1">
                                                 </div>
                                                 <div class="swiper-slide">
-                                                    <img src="images/ads/qc2.png" alt="Quảng cáo 2">
-                                                    <!-- Thêm các slide khác nếu cần -->
+                                                    <img src="images/ads/qc2.jpg" alt="Quảng cáo 2">
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <img src="images/ads/qc3.jpg" alt="Quảng cáo 3">
                                                 </div>
                                             </div>
                                             <!-- Nút điều hướng Swiper -->
@@ -81,7 +82,7 @@ if (session_status() == PHP_SESSION_NONE) {
                             <div class="freeship_banner">
                                 <div class="row">
                                     <div class="col-12">
-                                        <img src="images/banner/freeship-banner.png" alt="Banner Freeship">
+                                        <img src="images/banner/freeship-banner.jpg" alt="Banner Freeship">
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +111,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     $query_product_discount = mysqli_query($mysqli, $sql_product_discount);
                                     if ($query_product_discount && mysqli_num_rows($query_product_discount) > 0) {
                                         while ($row_product_discount = mysqli_fetch_array($query_product_discount)) {
-                                            $hinhanh_url = './admin/modules/quanlysp/handleEvent/uploads/' . rawurlencode($row_product_discount['hinhanh']);
+                                            $hinhanh_url = './admin/modules/quanlysp/handleEvent/product/' . rawurlencode($row_product_discount['hinhanh']);
                                     ?>
                                     <div class="col col-lg-2-4 col-md-3 col-6 mb-10">
                                         <!-- Class col-lg-2-4 là tùy chỉnh? -->
@@ -157,9 +158,9 @@ if (session_status() == PHP_SESSION_NONE) {
                                                     </div>
                                                     <div class="price__wrapper">
                                                         <?php
-                                                        if ($row_product_discount['giamgia'] > 0) {
-                                                            $discounted_price = $row_product_discount['giasp'] - ($row_product_discount['giasp'] * $row_product_discount['giamgia']) / 100;
-                                                        ?>
+                                                                if ($row_product_discount['giamgia'] > 0) {
+                                                                    $discounted_price = $row_product_discount['giasp'] - ($row_product_discount['giasp'] * $row_product_discount['giamgia']) / 100;
+                                                                ?>
                                                         <span
                                                             class="price-discount"><?php echo number_format($discounted_price, 0, ',', '.'); ?>đ</span>
                                                         <span
@@ -204,7 +205,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     $query_product_sold = mysqli_query($mysqli, $sql_product_sold);
                                     if ($query_product_sold && mysqli_num_rows($query_product_sold) > 0) {
                                         while ($row_product_sold = mysqli_fetch_array($query_product_sold)) {
-                                            $hinhanh_url_sold = './admin/modules/quanlysp/handleEvent/uploads/' . rawurlencode($row_product_sold['hinhanh']);
+                                            $hinhanh_url_sold = './admin/modules/quanlysp/handleEvent/product/' . rawurlencode($row_product_sold['hinhanh']);
                                     ?>
                                     <div class="col col-lg-2-4 col-md-3 col-6 mb-10">
                                         <div class="row__item item--product">
@@ -247,9 +248,9 @@ if (session_status() == PHP_SESSION_NONE) {
                                                     </div>
                                                     <div class="price__wrapper">
                                                         <?php
-                                                        if ($row_product_sold['giamgia'] > 0) {
-                                                            $discounted_price_sold = $row_product_sold['giasp'] - ($row_product_sold['giasp'] * $row_product_sold['giamgia']) / 100;
-                                                        ?>
+                                                                if ($row_product_sold['giamgia'] > 0) {
+                                                                    $discounted_price_sold = $row_product_sold['giasp'] - ($row_product_sold['giasp'] * $row_product_sold['giamgia']) / 100;
+                                                                ?>
                                                         <span
                                                             class="price-discount"><?php echo number_format($discounted_price_sold, 0, ',', '.'); ?>đ</span>
                                                         <span
@@ -266,7 +267,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     <?php
                                         } // end while sold product
                                     } else {
-                                         echo "<div class='col-12'><p style='padding: 20px; text-align: center;'>Chưa có sản phẩm bán chạy.</p></div>";
+                                        echo "<div class='col-12'><p style='padding: 20px; text-align: center;'>Chưa có sản phẩm bán chạy.</p></div>";
                                     }
                                     ?>
                                 </div> <!-- end .row.product--container -->
@@ -314,9 +315,9 @@ if (session_status() == PHP_SESSION_NONE) {
                                 <div class="row product--container">
                                     <!-- Bỏ no-wrap nếu muốn -->
                                     <?php
-                                    while ($row_product = mysqli_fetch_array($query_product_list)) {
-                                        $hinhanh_url_cat = './admin/modules/quanlysp/handleEvent/uploads/' . rawurlencode($row_product['hinhanh']);
-                                    ?>
+                                                while ($row_product = mysqli_fetch_array($query_product_list)) {
+                                                    $hinhanh_url_cat = './admin/modules/quanlysp/handleEvent/product/' . rawurlencode($row_product['hinhanh']);
+                                                ?>
                                     <div class="col col-lg-2-4 col-md-3 col-6 mb-10">
                                         <div class="row__item item--product">
                                             <div class="row__item-container">
@@ -358,9 +359,9 @@ if (session_status() == PHP_SESSION_NONE) {
                                                     </div>
                                                     <div class="price__wrapper">
                                                         <?php
-                                                        if ($row_product['giamgia'] > 0) {
-                                                            $discounted_price_cat = $row_product['giasp'] - ($row_product['giasp'] * $row_product['giamgia']) / 100;
-                                                        ?>
+                                                                        if ($row_product['giamgia'] > 0) {
+                                                                            $discounted_price_cat = $row_product['giasp'] - ($row_product['giasp'] * $row_product['giamgia']) / 100;
+                                                                        ?>
                                                         <span
                                                             class="price-discount"><?php echo number_format($discounted_price_cat, 0, ',', '.'); ?>đ</span>
                                                         <span
@@ -375,8 +376,8 @@ if (session_status() == PHP_SESSION_NONE) {
                                         </div>
                                     </div>
                                     <?php
-                                        } // end while product list
-                                    ?>
+                                                } // end while product list
+                                                ?>
                                 </div> <!-- end .row.product--container -->
                             </div>
                         </div>

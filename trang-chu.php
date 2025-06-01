@@ -511,7 +511,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
         if (countdownElement) {
             // !!! THAY ĐỔI NGÀY KẾT THÚC Ở ĐÂY !!!
-            const countDownDate = new Date("2024-12-31T23:59:59").getTime(); // Ví dụ: cuối năm 2024
+            const countDownDate = new Date("2026-12-31T23:59:59").getTime(); // Ví dụ: cuối năm 2024
 
             const updateCountdown = () => {
                 const now = new Date().getTime();

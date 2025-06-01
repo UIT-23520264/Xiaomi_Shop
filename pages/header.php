@@ -58,7 +58,7 @@ include('./js/link.php');
                             <div class="header_search_form_container">
                                 <div class="header_search_form">
                                     <input type="search" class="header_search_input" maxlength="200"
-                                        placeholder="Tìm camera...">
+                                        placeholder="Tìm sản phẩm...">
                                     <button class="header_search_button">
                                         <img
                                             src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918770/search.png">

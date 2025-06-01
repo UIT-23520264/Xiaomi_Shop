@@ -707,7 +707,8 @@ ul.page__pagination {
 }
 
 .countdown-time p {
-  color: var(--text-secondary);
+  color:#b00808;
+  font-weight: bold;
   font-size: 0.95rem;
   margin: 0;
   /* Remove default margins */

@@ -214,15 +214,6 @@
                             </a>
                             <?php } ?>
 
-
-                            <div class="social_icon">
-                                <i class="fa-brands fa-facebook-f"></i>
-                                <i class="fa-brands fa-twitter"></i>
-                                <i class="fa-regular fa-envelope"></i>
-                                <i class="fa-brands fa-pinterest-p"></i>
-                                <i class="fa-brands fa-linkedin-in"></i>
-                            </div>
-
                             <div class="content_after_share">
                                 <p>Tư vấn bán hàng liên hệ:</p>
                                 <span style="color: #ff0000;"><a style="color: #ff0000;" title="Tư vấn bán hàng"

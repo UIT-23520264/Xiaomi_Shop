@@ -1,11 +1,9 @@
 <?php
 session_start();
-// $mysqli = new mysqli("sql.freedb.tech", "freedb_gpm_camera", "wk94?FQWZh@r4V$", "freedb_camera_shop");
-//$mysqli = new mysqli("localhost", "nuldhpme_camera_shop", "0935013553", "nuldhpme_camera_shop");
-//$mysqli = new mysqli("localhost", "root", "", "camera_shop");
+
 
 $servername = "localhost";
-$database = "camera_shop_copy";
+$database = "xiaomi_shop";
 $username = "root";
 $password = "";
 
@@ -98,14 +96,14 @@ $row_privilege = mysqli_fetch_array($query_privilege)
     }
     ?>
     <?php
-    //if (true) {
+    if (true) {
     ?>
-    <!-- <button class="sidebar-list-item">
+    <button class="sidebar-list-item">
         <a class="list-user">Quản lý khách hàng</a>
         <img class="list-user" title="Quản lý khách hàng" src="../../images/icon/guests.png" alt="">
-    </button> -->
+    </button>
     <?php
-    //}
+    }
     ?>
 </div>
 <div id="view-edit-account"></div>

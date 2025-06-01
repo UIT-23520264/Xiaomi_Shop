@@ -397,15 +397,18 @@ if (session_status() == PHP_SESSION_NONE) {
 
     <!-- Script JS -->
     <script>
-    // Sử dụng DOMContentLoaded để đảm bảo HTML đã sẵn sàng
-    document.addEventListener('DOMContentLoaded', function() {
+    $(document).ready(function() {
+        // Ẩn loader khi trang load xong
+        setTimeout(function() {
+            $('.loader-wrapper').fadeOut(500);
+        }, 100);
 
         // --- Khởi tạo Swiper ---
         try {
             var swiper = new Swiper(".mySwiper", {
                 loop: true,
                 autoplay: {
-                    delay: 3000, // Tăng nhẹ delay
+                    delay: 3000,
                     disableOnInteraction: false,
                 },
                 navigation: {
@@ -415,7 +418,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 pagination: {
                     el: ".swiper-pagination",
                     dynamicBullets: true,
-                    clickable: true, // Cho phép click vào dot
+                    clickable: true,
                 },
                 keyboard: {
                     enabled: true,
@@ -426,99 +429,64 @@ if (session_status() == PHP_SESSION_NONE) {
             console.error("Swiper initialization failed:", e);
         }
 
-        // --- XỬ LÝ CLICK ĐỂ ĐIỀU HƯỚNG TRANG (ĐÃ SỬA) ---
-        const mainContentArea = document.getElementById('main') || document.body;
+        // --- XỬ LÝ CLICK ĐỂ ĐIỀU HƯỚNG TRANG (SỬA DÙNG JQUERY EVENT DELEGATION) ---
 
-        mainContentArea.addEventListener('click', function(event) {
-
-            // 1. Click vào chi tiết sản phẩm (hình ảnh hoặc tên)
-            const productDetailLink = event.target.closest('.view__product-detail');
-            if (productDetailLink) {
-                const idDetail = productDetailLink.getAttribute("value");
-                if (idDetail) {
-                    const url = "san-pham.php?id=" + encodeURIComponent(idDetail);
-                    window.location.href = url; // Chuyển trang trực tiếp
-                }
-                return;
+        // 1. Click vào chi tiết sản phẩm
+        $(document).on('click', '.view__product-detail', function() {
+            var idDetail = $(this).attr("value");
+            if (idDetail) {
+                var url = "san-pham.php?id=" + idDetail;
+                window.history.pushState("new", "title", url);
+                $(".container").load("san-pham.php?id=" + idDetail);
+                window.location.reload();
             }
+        });
 
-            // 2. Click vào "Xem tất cả" của danh mục
-            const viewAllCategoryLink = event.target.closest('.view__all-product-with-category');
-            if (viewAllCategoryLink) {
-                const idAll = viewAllCategoryLink.getAttribute("value");
-                if (idAll) {
-                    const url = "danh-muc.php?id=" + encodeURIComponent(idAll);
-                    window.location.href = url; // Chuyển trang trực tiếp
-                }
-                return;
+        // 2. Click vào "Xem tất cả" của danh mục
+        $(document).on('click', '.view__all-product-with-category', function() {
+            var idAll = $(this).attr("value");
+            if (idAll) {
+                var url = "danh-muc.php?id=" + idAll;
+                window.history.pushState("new", "title", url);
+                $(".container").load("danh-muc.php?id=" + idAll);
+                window.location.reload();
             }
+        });
 
-            // 3. Click vào nút danh mục ở menu trái (KHỐI NÀY ĐÃ BỊ XÓA, NHƯNG ĐỂ LẠI LOGIC NÀY NẾU CÓ NÚT TƯƠNG TỰ Ở NƠI KHÁC)
-            const categoryButton = event.target.closest(
-                '.category__product-btn'
-            ); // Khối này đã bị xóa nên event listener này sẽ không còn tác dụng cho menu trái nữa
-            if (categoryButton) {
-                const idCategory = categoryButton.getAttribute("value");
-                if (idCategory) {
-                    const url = "danh-muc.php?id=" + encodeURIComponent(idCategory);
-                    window.location.href = url; // Chuyển trang trực tiếp
-                }
-                return;
+        // 3. Click vào nút danh mục
+        $(document).on('click', '.category__product-btn', function() {
+            var idCategory = $(this).attr("value");
+            if (idCategory) {
+                var url = "danh-muc.php?id=" + idCategory;
+                window.history.pushState("new", "title", url);
+                $(".container").load("danh-muc.php?id=" + idCategory);
+                window.location.reload();
             }
+        });
 
-            // 4. Click vào nút "Thêm vào giỏ" (Cần xử lý AJAX riêng)
-            const addToCartBtn = event.target.closest('.add-to-cart-btn');
-            if (addToCartBtn) {
-                const productId = addToCartBtn.getAttribute('value');
-                console.log("Thêm vào giỏ (đăng nhập): " + productId);
-                // !!! Thêm logic AJAX của bạn vào đây !!!
-                // Ví dụ dùng jQuery (cần include jQuery trước):
-                /*
-                $.ajax({
-                    url: 'pages/ajax_add_to_cart.php', // Đường dẫn file xử lý thêm giỏ hàng
-                    method: 'POST',
-                    data: { product_id: productId, quantity: 1 }, // Gửi ID và số lượng
-                    success: function(response) {
-                        // Xử lý kết quả trả về (ví dụ: cập nhật icon giỏ hàng, hiện thông báo)
-                        console.log(response);
-                        alert('Đã thêm sản phẩm vào giỏ hàng!');
-                        // Cập nhật số lượng trên icon giỏ hàng (nếu có)
-                        // updateCartCount();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Lỗi khi thêm vào giỏ:", error);
-                        alert('Có lỗi xảy ra, vui lòng thử lại.');
-                    }
-                });
-                */
-                alert('Đã thêm vào giỏ hàng');
-                return;
-            }
+        // 4. Click vào nút "Thêm vào giỏ" (đã đăng nhập)
+        $(document).on('click', '.add-to-cart-btn', function() {
+            var productId = $(this).attr('value');
+            console.log("Thêm vào giỏ (đăng nhập): " + productId);
+            // Thêm logic AJAX thêm giỏ hàng ở đây
+            swal("OK!", "Đã thêm vào giỏ hàng", "success");
+        });
 
-            const addToCartNotLoginBtn = event.target.closest('.add-to-cart-btn-not-login');
-            if (addToCartNotLoginBtn) {
-                alert('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!');
-                // Chuyển hướng đến trang đăng nhập (tùy chọn)
-                // window.location.href = 'login.php';
-                return;
-            }
-
+        // 5. Click vào nút "Thêm vào giỏ" (chưa đăng nhập)
+        $(document).on('click', '.add-to-cart-btn-not-login', function() {
+            swal("Vui lòng đăng nhập", "Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!", "error");
         });
 
         // --- Countdown Timer ---
         const countdownElement = document.querySelector(".countdown-time p");
-        let countdownInterval; // Khai báo biến ở phạm vi ngoài
-
         if (countdownElement) {
-            // !!! THAY ĐỔI NGÀY KẾT THÚC Ở ĐÂY !!!
-            const countDownDate = new Date("2026-12-31T23:59:59").getTime(); // Ví dụ: cuối năm 2024
+            const countDownDate = new Date("2026-12-31T23:59:59").getTime();
 
             const updateCountdown = () => {
                 const now = new Date().getTime();
                 const distance = countDownDate - now;
 
                 if (distance < 0) {
-                    clearInterval(countdownInterval);
                     countdownElement.innerHTML = "Chương trình đã kết thúc";
                     return;
                 }
@@ -528,7 +496,6 @@ if (session_status() == PHP_SESSION_NONE) {
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                // Hiển thị đẹp hơn
                 let output = "Kết thúc sau: ";
                 if (days > 0) output += `${days} ngày `;
                 output +=
@@ -536,24 +503,10 @@ if (session_status() == PHP_SESSION_NONE) {
                 countdownElement.innerHTML = output;
             };
 
-            updateCountdown(); // Chạy lần đầu
-            countdownInterval = setInterval(updateCountdown, 1000);
-        } else {
-            console.warn("Không tìm thấy phần tử countdown '.countdown-time p'");
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
         }
-
-        // --- Ẩn loader nếu có (tùy chọn) ---
-        const loaderWrapper = document.querySelector('.loader-wrapper');
-        if (loaderWrapper) {
-            setTimeout(() => {
-                loaderWrapper.style.opacity = '0';
-                setTimeout(() => {
-                    loaderWrapper.style.display = 'none';
-                }, 500); // Chờ transition kết thúc
-            }, 100); // Delay nhỏ để đảm bảo render xong
-        }
-
-    }); // Kết thúc DOMContentLoaded
+    });
     </script>
 </body>
 

@@ -1434,6 +1434,15 @@
         /* COMMENT END */
     })
     </script>
+
+    <script>
+    // Ẩn loader sau khi trang san-pham.php load xong
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('.loader-wrapper').fadeOut(500);
+        }, 100);
+    });
+    </script>
 </body>
 
 </html>
